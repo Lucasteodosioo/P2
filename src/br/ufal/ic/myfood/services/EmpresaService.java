@@ -25,7 +25,9 @@ public class EmpresaService implements Serializable {
         proximoId = 1;
     }
 
+    // ========================
     // CRIAÇÃO
+    // ========================
 
     public int criarEmpresa(String tipoEmpresa, int idDono, String nome, String endereco,
                             String tipoCozinha, Map<Integer, Usuario> usuarios) throws Exception {
@@ -54,7 +56,9 @@ public class EmpresaService implements Serializable {
         return id;
     }
 
+    // ========================
     // CONSULTAS
+    // ========================
 
     public String getEmpresasDoUsuario(int idDono, Map<Integer, Usuario> usuarios) throws Exception {
         Usuario u = usuarios.get(idDono);
@@ -98,7 +102,13 @@ public class EmpresaService implements Serializable {
         return e.getAtributo(atributo);
     }
 
+    // ========================
     // RESET
+    // ========================
+
+    public Map<Integer, Empresa> getEmpresas() {
+        return empresas;
+    }
 
     public void zerar() {
         empresas = new HashMap<>();

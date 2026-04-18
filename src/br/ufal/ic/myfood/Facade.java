@@ -6,11 +6,13 @@ public class Facade {
 
     private UsuarioService usuarioService;
     private EmpresaService empresaService;
+    private ProdutoService produtoService;
 
     public Facade() {
         DadosSistema dados = PersistenciaService.carregar();
         usuarioService = dados.getUsuarioService();
         empresaService = dados.getEmpresaService();
+        produtoService = dados.getProdutoService();
     }
 
     // SISTEMA
@@ -18,11 +20,12 @@ public class Facade {
     public void zerarSistema() throws Exception {
         usuarioService.zerar();
         empresaService.zerar();
+        produtoService.zerar();
         PersistenciaService.deletarArquivo();
     }
 
     public void encerrarSistema() throws Exception {
-        PersistenciaService.salvar(usuarioService, empresaService);
+        PersistenciaService.salvar(usuarioService, empresaService, produtoService);
     }
 
     // USUÁRIOS
@@ -59,5 +62,23 @@ public class Facade {
 
     public String getAtributoEmpresa(int empresa, String atributo) throws Exception {
         return empresaService.getAtributoEmpresa(empresa, atributo);
+    }
+
+    //PRODUTOS
+
+    public int criarProduto(int empresa, String nome, float valor, String categoria) throws Exception {
+        return produtoService.criarProduto(empresa, nome, valor, categoria, empresaService.getEmpresas());
+    }
+
+    public void editarProduto(int produto, String nome, float valor, String categoria) throws Exception {
+        produtoService.editarProduto(produto, nome, valor, categoria);
+    }
+
+    public String getProduto(String nome, int empresa, String atributo) throws Exception {
+        return produtoService.getProduto(nome, empresa, atributo);
+    }
+
+    public String listarProdutos(int empresa) throws Exception {
+        return produtoService.listarProdutos(empresa, empresaService.getEmpresas());
     }
 }
