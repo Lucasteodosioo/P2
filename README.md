@@ -2,6 +2,7 @@ Projeto acadêmico da disciplina de Programação 2 (UFAL)
 
 Estrutura do projeto -
   src/
+  br/ufal/ic/myfood/
   models/          → Classes que representam os dados do sistema ///
   services/        → Classes que contém a lógica e regras de negócio ///
   exceptions/      → Uma classe por tipo de erro do sistema ///
