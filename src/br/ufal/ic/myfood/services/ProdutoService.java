@@ -86,13 +86,13 @@ public class ProdutoService implements Serializable{
         if (!empresas.containsKey(idEmpresa)) throw new EmpresaInexistenteException();
 
         List<Integer> ids = empresaProdutos.getOrDefault(idEmpresa, new ArrayList<>());
-        StringBuilder sb = new StringBuilder("{[");
-        for (int i = 0; i < ids.size(); i++) {
-            sb.append(produtos.get(ids.get(i)).getNome());
-            if (i < ids.size() - 1) sb.append(", ");
+        List<String> nomes = new ArrayList<>();
+
+        for (int id : ids) {
+            nomes.add(produtos.get(id).getNome());
         }
-        sb.append("]}");
-        return sb.toString();
+
+        return "{[" + String.join(", ", nomes) + "]}";
     }
 
     // RESET

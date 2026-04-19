@@ -12,15 +12,23 @@ public class DadosSistema implements Serializable {
     private ProdutoService produtoService;
     private PedidoService pedidoService;
 
-    public DadosSistema(UsuarioService usuarioService, EmpresaService empresaService, ProdutoService produtoService, PedidoService peds) {
+    public DadosSistema(UsuarioService usuarioService, EmpresaService empresaService, ProdutoService produtoService, PedidoService pedidoService) {
         this.usuarioService = usuarioService;
         this.empresaService = empresaService;
         this.produtoService = produtoService;
-        this.pedidoService = peds;
+        this.pedidoService = pedidoService;
     }
 
-    public UsuarioService getUsuarioService() { return usuarioService != null ? usuarioService : new UsuarioService(); }
-    public EmpresaService getEmpresaService() { return empresaService != null ? empresaService : new EmpresaService(); }
-    public ProdutoService getProdutoService() { return produtoService != null ? produtoService : new ProdutoService(); }
-    public PedidoService getPedidoService()   { return pedidoService  != null ? pedidoService  : new PedidoService(); }
+    public UsuarioService getUsuarioService() {
+        return usuarioService != null ? usuarioService : new UsuarioService();
+    }
+    public EmpresaService getEmpresaService() {
+        return empresaService != null ? empresaService : new EmpresaService();
+    }
+    public ProdutoService getProdutoService() {
+        return produtoService != null ? produtoService : new ProdutoService();
+    }
+    public PedidoService getPedidoService()   {
+        return pedidoService  != null ? pedidoService  : new PedidoService();
+    }
 }
