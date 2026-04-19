@@ -78,6 +78,10 @@ public class ProdutoService implements Serializable{
         return produtos.get(idProduto).getAtributo(atributo);
     }
 
+    public Map<Integer, Produto> getProdutos() {
+        return produtos;
+    }
+
     public String listarProdutos(int idEmpresa, Map<Integer, Empresa> empresas) throws Exception {
         if (!empresas.containsKey(idEmpresa)) throw new EmpresaInexistenteException();
 

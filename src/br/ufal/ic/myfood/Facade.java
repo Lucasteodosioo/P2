@@ -7,12 +7,14 @@ public class Facade {
     private UsuarioService usuarioService;
     private EmpresaService empresaService;
     private ProdutoService produtoService;
+    private PedidoService pedidoService;
 
     public Facade() {
         DadosSistema dados = PersistenciaService.carregar();
         usuarioService = dados.getUsuarioService();
         empresaService = dados.getEmpresaService();
         produtoService = dados.getProdutoService();
+        pedidoService  = dados.getPedidoService();
     }
 
     // SISTEMA
@@ -21,11 +23,12 @@ public class Facade {
         usuarioService.zerar();
         empresaService.zerar();
         produtoService.zerar();
+        pedidoService.zerar();
         PersistenciaService.deletarArquivo();
     }
 
     public void encerrarSistema() throws Exception {
-        PersistenciaService.salvar(usuarioService, empresaService, produtoService);
+        PersistenciaService.salvar(usuarioService, empresaService, produtoService, pedidoService);
     }
 
     // USUÁRIOS
@@ -80,5 +83,31 @@ public class Facade {
 
     public String listarProdutos(int empresa) throws Exception {
         return produtoService.listarProdutos(empresa, empresaService.getEmpresas());
+    }
+
+    //PEDIDOS
+
+    public int criarPedido(int cliente, int empresa) throws Exception {
+        return pedidoService.criarPedido(cliente, empresa, usuarioService.getUsuarios(), empresaService.getEmpresas());
+    }
+
+    public void adicionarProduto(int numero, int produto) throws Exception {
+        pedidoService.adicionarProduto(numero, produto, produtoService.getProdutos());
+    }
+
+    public void removerProduto(int pedido, String produto) throws Exception {
+        pedidoService.removerProduto(pedido, produto);
+    }
+
+    public String getPedidos(int pedido, String atributo) throws Exception {
+        return pedidoService.getPedidos(pedido, atributo);
+    }
+
+    public void fecharPedido(int numero) throws Exception {
+        pedidoService.fecharPedido(numero);
+    }
+
+    public int getNumeroPedido(int cliente, int empresa, int indice) throws Exception {
+        return pedidoService.getNumeroPedido(cliente, empresa, indice);
     }
 }

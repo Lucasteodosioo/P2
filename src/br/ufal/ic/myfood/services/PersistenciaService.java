@@ -6,9 +6,9 @@ public class PersistenciaService {
 
     private static final String ARQUIVO_DADOS = "myfood_dados.ser";
 
-    public static void salvar(UsuarioService us, EmpresaService es, ProdutoService ps) throws Exception {
+    public static void salvar(UsuarioService us, EmpresaService es, ProdutoService ps, PedidoService peds) throws Exception {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARQUIVO_DADOS))) {
-            oos.writeObject(new DadosSistema(us, es, ps));
+            oos.writeObject(new DadosSistema(us, es, ps, peds));
         }
     }
 
@@ -25,7 +25,7 @@ public class PersistenciaService {
     }
 
     private static DadosSistema novosDados() {
-        return new DadosSistema(new UsuarioService(), new EmpresaService(), new ProdutoService());
+        return new DadosSistema(new UsuarioService(), new EmpresaService(), new ProdutoService(), new PedidoService());
     }
 
     public static void deletarArquivo() {
