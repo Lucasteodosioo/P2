@@ -2,10 +2,10 @@ Projeto acadêmico da disciplina de Programação 2 (UFAL)
 
 Estrutura do projeto -
   src/
-  models/          → Classes que representam os dados do sistema
-  services/        → Classes que contém a lógica e regras de negócio
-  exceptions/      → Uma classe por tipo de erro do sistema
-  Facade.java      → Ponto de entrada usado pelo EasyAccept
+  models/          → Classes que representam os dados do sistema ///
+  services/        → Classes que contém a lógica e regras de negócio ///
+  exceptions/      → Uma classe por tipo de erro do sistema ///
+  Facade.java      → Ponto de entrada usado pelo EasyAccept ///
 
 Banco de Dados - 
   Este projeto não usa um banco de dados usual. Os dados são salvos em um arquivo binário chamado "myfood_dados.ser", importado do Serializable.
